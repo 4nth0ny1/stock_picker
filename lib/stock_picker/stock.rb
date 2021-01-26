@@ -1,15 +1,31 @@
 class StockPicker::Stock
 
+    attr_accessor :company_name, :stock_symbol, :price, :shares
+
+    # @@all = []
+
+    def initialize(company_name, stock_symbol, price, shares = 0)
+        @company_name = company_name
+        @stock_symbol = stock_symbol
+        @price = price
+        @shares = shares
+    end 
+
+    # def self.all 
+    #     @@all << self
+    # end 
+
     def self.show_stock
         puts "ANALYZE A STOCK"
         ## gets the stock symbol from the user 
-        puts "Enter the stock symbol"                                       ## ERROR ====  if not valid symbol then repeat questions
+        puts "Enter the stock symbol"                    ## ERROR ====  if not valid symbol then repeat questions
         stock_symbol_input = gets.strip.downcase 
         ## displays the stock information 
+        puts " "
         puts "Apple, Inc. (symbol: AAPL)"
         puts "Price: $299 per share"
         puts " "
-        puts "Would you like to see additional financial information about this stock?"
+        puts "Would you like to see additional financial information about Apple, Inc.?"
         puts "Enter: yes or no"
     end 
 
@@ -23,9 +39,9 @@ class StockPicker::Stock
             puts " "
             puts "Would you like to add this stock to your portfolio (type: add) or goto the main menu (type: menu)?"
             add_to_portfolio_or_goto_menu = gets.strip.downcase
-            if add_to_portfolio_or_goto_menu = "add"
+            if add_to_portfolio_or_goto_menu == "add"
                 purchase_stock
-            elsif add_to_portfolio_or_goto_menu = "menu"
+            elsif add_to_portfolio_or_goto_menu == "menu"
                 menu_items
             else
                 "from here you can type add or menu"
@@ -33,9 +49,9 @@ class StockPicker::Stock
         else
             puts "(Type: add) to purchase the stock to your portfolio or (type: menu) to go back to the main menu."
             add_to_portfolio_or_goto_menu = gets.strip.downcase
-                if add_to_portfolio_or_goto_menu = "add"
+                if add_to_portfolio_or_goto_menu == "add"
                     purchase_stock
-                elsif add_to_portfolio_or_goto_menu = "menu"
+                elsif add_to_portfolio_or_goto_menu == "menu"
                     menu_items
                 else
                     "from here you can type add or menu"
